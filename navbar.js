@@ -6,10 +6,6 @@ let categorias = [
     {
         nombre: "Productos",
         href: "./producto.html"
-    },
-    {
-        nombre: "Contacto",
-        href: "./contacto.html"
     }
 ];
 
@@ -26,7 +22,7 @@ for (let item of categorias) {
 let menu = `
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">Tienda</a>
+        <a class="navbar-brand" href="./index.html">                   Tienda                   </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -34,9 +30,17 @@ let menu = `
             <ul class="navbar-nav">
                 ${menuItems.join('')}
             </ul>
+            <ul class="navbar-nav session"> ${ localStorage.getItem("email") ? `<span>${localStorage.getItem("email")}</span>  |  <span onclick="logout()"> Cerrar sesión </span>` : "<a href= './login.html'><span> Iniciar sesión</span></a>"
+            }
+                </ul>
         </div>
     </div>
 </nav>
 `;
 
 document.querySelector('header').innerHTML = menu;
+
+function logout() {
+    localStorage.clear();
+    location.href = "./index.html";
+}
